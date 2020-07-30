@@ -63,6 +63,9 @@
     ; (function ($) {
 
         $(document).ready(function () {                  
+            $('.datepicker').datepicker({            
+                format: 'dd/mm/yyyy'
+            });            
 
             if ($('#isOnRoad').is(':checked')) {
                 $('#SelectedLocalAuthority').show();

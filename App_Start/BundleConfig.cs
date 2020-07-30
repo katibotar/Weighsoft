@@ -21,8 +21,9 @@ namespace Weighsoft
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/postcodes.min.js",
                       "~/Scripts/bootstrap-datepicker.js",
+                      "~/Scripts/postcodes.min.js",
+                      "~/Scripts/postcodes.min.js",                      
                       "~/Scripts/jquery-ui.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

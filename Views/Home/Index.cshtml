@@ -43,8 +43,12 @@
                     </tr>
                     <tr>
                         <td>@Html.Label("When would you like delivery?")</td>
-                        <td>@Html.TextBoxFor(model => model.DeliveryDate, new { @class = "datepicker form-control" })</td>
-                        <td>@Html.ValidationMessageFor(model => model.DeliveryDate, "", new { @class = "text-danger" })</td>
+                        <td>
+                            @Html.EditorFor(model => model.DeliveryDate, new { @class = "form-control date-picker" })
+                            @Html.DisplayFor(m => m.DeliveryDate)
+                        </td>
+                        <td>@Html.ValidationMessageFor(model => model.DeliveryDate, "", new { @class = "text-danger" })
+                    </td>
                     </tr>
                 </table>
             </td>

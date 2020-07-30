@@ -24,6 +24,7 @@ namespace Weighsoft.Models
         [CustomDeliveryDate(ErrorMessage = "The delivery date must be at least 2 days in advance")]       
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Please select a date")]
         public DateTime? DeliveryDate { get; set; }
         public List<ProductModel> Products { get; set; }
 
