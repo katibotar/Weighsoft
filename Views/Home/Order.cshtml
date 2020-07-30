@@ -1,0 +1,30 @@
+﻿@model Weighsoft.Models.UserDetailModel
+
+@Html.HiddenFor(m => m.Name)
+@Html.HiddenFor(m => m.Email)
+@Html.HiddenFor(m => m.Mobile)
+@Html.HiddenFor(m => m.Postcode)
+@Html.HiddenFor(m => m.DeliveryDate)
+@Html.HiddenFor(m => m.SelectedProduct)
+@Html.HiddenFor(m => m.SelectedWasteType)
+@Html.HiddenFor(m => m.isOnRoad)
+@Html.HiddenFor(m => m.SelectedLocalAuthority)
+@Html.HiddenFor(m => m.ExVat)
+@Html.HiddenFor(m => m.Vat)
+@Html.HiddenFor(m => m.Total)
+
+@using (Html.BeginForm("Quotation", "Home", FormMethod.Post))
+{
+    <table class="tableMargin">
+        <tr>
+            <td>
+                <p class="ex2">THANKS FOR YOUR ORDER</p>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button onclick="location.href='@Url.Action("Quotation", "Home")';return false;" style="color: white; background-color:red;">Back</button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>   
+}

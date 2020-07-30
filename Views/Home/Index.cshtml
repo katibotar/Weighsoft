@@ -1,0 +1,64 @@
+﻿@model Weighsoft.Models.UserDetailModel
+
+@using (Html.BeginForm("Product", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.SelectedProduct)
+    @Html.HiddenFor(m => m.SelectedWasteType)
+    @Html.HiddenFor(m => m.isOnRoad)
+    @Html.HiddenFor(m => m.SelectedLocalAuthority)
+    @Html.HiddenFor(m => m.ExVat)
+    @Html.HiddenFor(m => m.Vat)
+    @Html.HiddenFor(m => m.Total)
+
+    <table class="tableMargin">
+        <tr>
+            <td>
+                <table class="smallPadding">
+                    <tr>
+                        <td>@Html.LabelFor(m => m.Name)</td>
+                        <td>@Html.TextBoxFor(m => m.Name, new { @class = "form-control" })</td>
+                        <td>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(m => m.Email)</td>
+                        <td>@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })</td>
+                        <td>@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(m => m.Mobile)</td>
+                        <td>@Html.TextBoxFor(m => m.Mobile, new { @class = "form-control" })</td>
+                        <td>@Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(m => m.Postcode)</td>
+                        <td>@Html.TextBoxFor(m => m.Postcode, new { @class = "form-control" })</td>
+                        <td><button type="button" id="getAddress">Get Address</button></td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => m.Address, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.Label("When would you like delivery?")</td>
+                        <td>@Html.TextBoxFor(model => model.DeliveryDate, new { @class = "datepicker form-control" })</td>
+                        <td>@Html.ValidationMessageFor(model => model.DeliveryDate, "", new { @class = "text-danger" })</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <div id="googleMap">
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <input type="submit" id="btnContinue" name="btnContinue" value="Continue" />
+            <input type="button" id="btnBackNo" name="btnBack" value="Cancel" />
+        </div>
+    </div>    
+}

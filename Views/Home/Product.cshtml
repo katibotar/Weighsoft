@@ -1,0 +1,132 @@
+﻿@model Weighsoft.Models.UserDetailModel
+
+<div>Quotation for @Html.DisplayFor(m => m.Name), for delivery on @Html.DisplayFor(m => m.DeliveryDate) </div>
+
+@using (Html.BeginForm("Quotation", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Name)
+    @Html.HiddenFor(m => m.Email)
+    @Html.HiddenFor(m => m.Mobile)
+    @Html.HiddenFor(m => m.Postcode)
+    @Html.HiddenFor(m => m.DeliveryDate)
+    @Html.HiddenFor(m => m.ExVat)
+    @Html.HiddenFor(m => m.Vat)
+    @Html.HiddenFor(m => m.Total)  
+    <div>
+        <table>
+            <tr>
+                <td class="alignTop">
+                    <table class="smallPadding">
+                        <tr>
+                            <td>
+                                <h3>Skip Required</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alignTop">
+                                @foreach (var product in Model.Products)
+                                {
+                                    <div>
+                                        @Html.RadioButtonFor(p => p.SelectedProduct, product.Description)&nbsp;@Html.Label(product.Description)
+                                    </div>
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    @Html.ValidationMessageFor(model => model.SelectedProduct, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="smallFont">
+                                    <p>Is the skip going to be situated on the Public Highway? </p>
+                                    <p>
+                                        If it is then you require a permit from your Local Authority.<br />
+                                        We can arrange this for you; simply select your Local Authority and the<br />
+                                        permit you want and we'll do the rest.
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(m => m.isOnRoad)
+                                @Html.CheckBoxFor(m => m.isOnRoad)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DropDownListFor(model => model.SelectedLocalAuthority, new SelectList(Model.LocalAuthorities, "Value", "Description"), new { @class = "form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    @Html.ValidationMessageFor(model => model.SelectedLocalAuthority, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <img id="skip" src="~/Images/skip.png" />
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <h3>Waste Type</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @foreach (var product in Model.WasteTypes)
+                                {
+                                    <div>
+                                        @Html.RadioButtonFor(w => w.SelectedWasteType, product.Description)&nbsp;@Html.Label(product.Description)
+                                    </div>
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
+                                    @Html.ValidationMessageFor(model => model.SelectedWasteType, "", new { @class = "text-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="smallFontRed">
+                                    <p><br />
+                                        If the waste contained in the skip is different to what is ordered then <br />
+                                        surcharges may be incurred. If you are not sure what waste type you <br />
+                                        should select, please <a href="#">click here</a>
+                                    </p>
+                                    <p>
+                                        NO FIRES, NO FRIDGES, NO MATTRESSES, NO OIL CANS, NO<br />
+                                        PAINT TINS, NO TYRES, NO FLUORESCENT TUBES
+                                    </p>
+                                    <p>
+                                        For a quotation and additional waste types, please call our office on<br />
+                                        01403 731840
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <input type="submit" id="btnContinue" name="submitbutton" value="Continue" />
+                <button onclick="location.href='@Url.Action("Index", "Home")';return false;" style="color: white; background-color:red;">Back</button>
+            </div>
+        </div>
+    </div>
+}

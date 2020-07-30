@@ -1,0 +1,102 @@
+﻿@model Weighsoft.Models.UserDetailModel
+
+<div>Quotation for @Html.DisplayFor(m => m.Name), for delivery on @Html.DisplayFor(m => m.DeliveryDate)</div>
+
+@using (Html.BeginForm("Order", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Name)
+    @Html.HiddenFor(m => m.Email)
+    @Html.HiddenFor(m => m.Mobile)
+    @Html.HiddenFor(m => m.Postcode)
+    @Html.HiddenFor(m => m.DeliveryDate)
+    @Html.HiddenFor(m => m.SelectedProduct)
+    @Html.HiddenFor(m => m.SelectedWasteType)
+    @Html.HiddenFor(m => m.isOnRoad)
+    @Html.HiddenFor(m => m.SelectedLocalAuthority)
+    @Html.HiddenFor(m => m.ExVat)
+    @Html.HiddenFor(m => m.Vat)
+    @Html.HiddenFor(m => m.Total)
+
+    <table class="tableMargin">
+        <tr>
+            <td>
+                Delivery Address <br />
+                <div class="boldText">@Html.DisplayFor(m => m.Address)</div>
+            </td>
+            <td>
+                Skip Size Required<br />
+                <div class="boldText">@Html.DisplayFor(m => m.SelectedProduct)</div>
+            </td>
+            <td>
+                Waste Type Selected<br />
+                <div class="boldText">@Html.DisplayFor(m => m.SelectedWasteType, new { @class = "boldText" })</div>
+            </td>
+            <td>
+                On Road Permit Selected<br />
+                @if (Model.SelectedLocalAuthority != "Please Select" && Model.isOnRoad)
+                {
+                    <div class="boldText">
+                        @Html.DisplayFor(m => m.SelectedLocalAuthority, new { @class = "boldText" })
+                    </div>
+                }
+                else
+                { 
+                    <div class="boldText">
+                        @Html.Raw("N/A")
+                    </div>
+                }
+             </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <td>
+                <table class="quotation">
+                    <tr>
+                        <td>
+                            <a href="#" id="emailPic">
+                                <img width="40" id="emailPic" src="~/Images/email.jpg" />
+                            </a>
+                            
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.Email, new { id = "quotationEmail" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img width="40" id="textPic" src="~/Images/text.jpg" />
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.Mobile, new { id = "quotationMobile" })
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="alignTop">              
+                <table class="prices">
+                    <tr>
+                        <td>£ @Html.DisplayFor(m => m.ExVat)</td>
+                        <td class="smallText"> Ex. VAT</td>
+                    </tr>
+                    <tr>
+                        <td>£ @Html.DisplayFor(m => m.Vat)</td>
+                        <td class="smallText">VAT</td>
+                    </tr>
+                    <tr>
+                        <td class="baldText">£ @Html.DisplayFor(m => m.Total)</td>
+                        <td class="smallText">TOTAL</td>
+                    </tr>
+                </table>
+             </td>   
+        </tr>
+    </table>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <input type="submit" id="btnContinue" name="submitbutton" value="Continue and Order" />            
+            <button onclick="location.href='@Url.Action("Product", "Home")';return false;" style="color: white; background-color:red;">Back</button>
+        </div>
+    </div>
+}

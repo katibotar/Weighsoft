@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Weighsoft", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Your Address", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Select a Product", "Product", "Home")</li>
+                    <li>@Html.ActionLink("Quotation", "Quotation", "Home")</li>
+                    <li>@Html.ActionLink("Order your Skip", "Order", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <div id="boxes">
+                <div id="leftbox">
+                    <a href="/Home/Privacy" target="_blank">Privacy Policy</a>                     
+                </div>
+                <div id="middlebox">
+                    <a href="/Home/Privacy" target="_blank">Terms and Conditions</a>
+                </div>
+                <div id="rightbox">
+                    &copy; Weighsoft Limited @DateTime.Now.Year
+                </div>
+            </div>          
+        </footer>
+    
+    </div>  
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+<script type="text/javascript">
+
+    ; (function ($) {
+
+        $(document).ready(function () {                  
+
+            if ($('#isOnRoad').is(':checked')) {
+                $('#SelectedLocalAuthority').show();
+            }
+            else {
+                $('#SelectedLocalAuthority').hide();
+            }        
+
+            $('#btnBack').click(function (e) {
+                e.preventDefault();
+                window.history.back();
+            });
+
+            $('#quotationEmail').change(function () {               
+                if ($(this).val() == '') {
+                    $('#emailPic').attr('disabled', 'disabled');     
+                    $('#emailPic').css('opacity', 0.5);
+                } else {
+                    $('#emailPic').removeAttr('disabled', 'disabled'); 
+                    $('#emailPic').css('opacity', 1);
+                }
+            });
+
+            $('#emailPic').click(function (e) {
+                if (!$("#emailPic").is('[disabled=disabled]')) {
+                    alert("We will email you the quote")
+                }                
+            });
+
+            $('#quotationMobile').change(function () {
+                if ($(this).val() == '') {
+                    $('#textPic').attr('disabled', 'disabled');
+                    $('#textPic').css('opacity', 0.5);
+                } else {
+                    $('#textPic').removeAttr('disabled', 'disabled');
+                    $('#textPic').css('opacity', 1);
+                }
+            });
+
+            $('#textPic').click(function (e) {
+                if (!$("#textPic").is('[disabled=disabled]')) {
+                    alert("We will sms you the quote")
+                }
+            });                   
+
+            $('#getAddress').click(function () {
+                var postcode = $('#Postcode').val();
+                var div = $('#googleMap');
+
+                $('#gmap_canvas').remove(); //otherwise it keeps adding iframes to the div
+
+                div.append("<iframe id='gmap_canvas' src='https://maps.google.com/maps?q=bn18dj&t=&z=13&ie=UTF8&iwloc=&output=embed'></iframe>");   
+
+                //div.append("<iframe id='gmap_canvas' src='https://maps.google.com/maps?q='+ postcode +'&t=&z=13&ie=UTF8&iwloc=&output=embed'></iframe>");
+            });
+
+            $('#isOnRoad').change(function () {                
+                if ($(this).is(':checked')) {
+                    $('#SelectedLocalAuthority').show();
+                }
+                else {
+                    $('#SelectedLocalAuthority').hide();
+                }
+            });       
+        });
+
+    } (jQuery, window));
+
+</script>

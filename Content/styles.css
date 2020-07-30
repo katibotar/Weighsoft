@@ -1,0 +1,120 @@
+﻿#leftbox {
+    float: left;    
+    width: 10%;   
+}
+
+#middlebox {
+    float: left;    
+    width: 70%;    
+}
+
+#rightbox {
+    float: right;     
+}
+
+body {
+    padding-top: 100px;
+}
+
+@media (max-width: 979px) {
+    body {
+        padding-top: 0px;
+    }
+}
+
+#details {
+    display: inline-block;
+}
+
+#map {
+    display: inline-block;
+}
+
+body {
+    padding-top: 10px !important;
+    padding-bottom: 20px;
+}
+
+#copyright {
+    float: right;
+}
+
+#skip {
+    width: 140px;
+    margin: 0px 50px 0px;
+}
+
+.smallFont {
+    font-size: x-small;   
+}
+
+.smallFontRed {
+    font-size: x-small;
+    color: red;
+}
+
+.alignTop {
+    vertical-align: top;
+}
+
+.tableMargin {
+    width: 100%;
+    padding-top: 15px;
+    margin-top:15px;
+}
+
+.quotation td {
+    padding: 15px;
+    font-size: small;
+}
+
+.prices {
+    margin-top: 15px;
+    margin-left: 100px;
+}
+
+.prices td {
+    padding: 5px;
+    font-size: small;
+    font-weight: bold;
+}
+
+.smallPadding td {
+    padding: 5px;
+    margin: 5px;
+}
+
+.boldText {
+    font-weight: bolder!important;
+}
+
+.smallText {   
+    font-size: x-small!important;
+}
+
+.text-danger {
+    color: red;
+}
+
+#btnBack {
+    color: white;
+    background-color: red;
+}
+
+#btnBackNo {
+    color: white;
+    background-color: red;
+}
+
+#btnContinue {
+    color: white;
+    background-color: green;
+    float:right;
+}
+
+p.ex2 {
+    font-size: 50px;
+    color: red;
+    vertical-align: central;
+    text-align: center;
+}
